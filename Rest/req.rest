@@ -1,0 +1,23 @@
+GET  http://localhost:5000/api/auth/users
+
+###
+
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+    "profilePicture": "",
+    "fullName": "Ryan Nograles",
+    "email": "ryannograles.025.gtsi",
+    "password": "12342323"
+}
+
+###
+
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "ryannograles.025.gtsi@gmail.com",
+    "password": "12342323"
+}
