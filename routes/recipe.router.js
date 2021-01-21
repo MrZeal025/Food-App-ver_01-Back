@@ -10,4 +10,16 @@ const { recipeSchema } = require('../validation/recipe.schema');
  */
 router.post('/create', [jwtAuth, validate(recipeSchema)],  recipeController.createRecipe);  
 
+/**
+ *  Route to get all recipe
+ *  @param { filters } 
+ */
+router.get('/read-all', [jwtAuth], recipeController.readRecipe);
+
+/**
+ *  Router to delete a recipe
+ *  @param { _id }
+ */
+router.delete('/delete/:id', [jwtAuth], recipeController.deleteRecipe);
+
 module.exports = router;

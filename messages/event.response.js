@@ -11,6 +11,7 @@ const CREATE_SUCCESS = "creation process succeded";
 const UPDATE_FAILED = "update process failed";
 const UPDATE_SUCCESS = "update process is successful";
 const DELETE_SUCCESS = "successfully deleted";
+const DELETE_FAILED = "failed to be deleted";
 const RESTORE_SUCCESS = "restored successfully";
 
 module.exports = {
@@ -27,5 +28,6 @@ module.exports = {
     UPDATE_FAILED,
     UPDATE_SUCCESS,
     DELETE_SUCCESS,
+    DELETE_FAILED,
     RESTORE_SUCCESS
 }

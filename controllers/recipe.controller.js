@@ -19,3 +19,33 @@ exports.createRecipe = async (req, res) => {
         throw err
     }
 }
+
+exports.readRecipe = async (req, res) => {
+    try {   
+        const readAll = await recipeService.getAllRecipe();
+        if(readAll.success){
+            return res.status(200).send(readAll);
+        }
+        else {
+            return res.status(400).send(readAll);
+        }
+    }
+    catch(err) {
+        throw err
+    }
+}
+
+exports.deleteRecipe = async (req, res) => {
+    try {   
+        const deleteRecipe = await recipeService.deleteRecipe(req.params.id);
+        if(deleteRecipe.success){
+            return res.status(200).send(deleteRecipe);
+        }
+        else {
+            return res.status(400).send(deleteRecipe);
+        }
+    }
+    catch(err) {
+        throw err
+    }
+}

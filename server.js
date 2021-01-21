@@ -17,13 +17,15 @@ const authRoute = require('./routes/auth.router');
 const uploadRouter = require('./routes/upload.router');
 const userRouter = require('./routes/user.router');
 const recipeRouter = require('./routes/recipe.router');
+const adminRouter = require('./routes/admin.router');
 
 // route middlewares
 app.use('/api/auth', authRoute);
 app.use('/api/uploads', uploadRouter);
 app.use('/api/user', userRouter);
 app.use('/api/recipe', recipeRouter);
-
+app.use('/api/admin', adminRouter);
+ 
 //  serve static assets if in productions
 if(process.env.NODE_ENV === "production") {
     // set static folder

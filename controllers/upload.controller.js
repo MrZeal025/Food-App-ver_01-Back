@@ -1,5 +1,5 @@
 const multer = require("multer");
-const { User } = require('../models');
+const { User, Admin } = require('../models');
 
 const storage1 = multer.diskStorage({
     destination: (req, file, callback) => {
@@ -65,6 +65,35 @@ exports.uploadProfile = async (req, res) => {
     })
 }
 
+exports.uploadAdminProfile = async (req, res) => {
+    
+    profileUpload(req, res, async function (err) {
+
+        // check if there is a errow on the multer process
+        if (err instanceof multer.MulterError) {
+            throw err
+        } else if (err) {
+            return res.status(400).json({ success: false, data: { messsage: err }})
+        }
+        // check if there is a file
+        if(req.files.length === 0) return res.status(400).json({success: false, data: { messsage: "Profile picture is empty." }});
+        
+        // respond to the user call
+        try {
+            const admin = await Admin.findById(req.params.id);
+            if(!admin) return res.status(400).json({ success: false, data: { message: "ADmin not found"} })
+            
+            admin.profilePicture = req.files[0].filename 
+            await admin.save();
+            
+            return res.status(200).json({ success: true, data: { message: "Profile picture updated successfully.", admin: admin.profilePicture }});
+        } 
+        catch (error) {
+            return res.status(400).json({ success: false, data: { messsage: error.response }})
+        }
+    })
+}
+
 exports.uploadCoverPhoto = async (req, res) => {
     
     coverPhotoUpload(req, res, async function (err) {
@@ -93,6 +122,36 @@ exports.uploadCoverPhoto = async (req, res) => {
         }
     })
 }
+
+exports.uploadAdminCoverPhoto = async (req, res) => {
+    
+    coverPhotoUpload(req, res, async function (err) {
+
+        // check if there is a errow on the multer process
+        if (err instanceof multer.MulterError) {
+            throw err
+        } else if (err) {
+            return res.status(400).json({ success: false, data: { messsage: err }})
+        }
+        // check if there is a file
+        if(req.files.length === 0) return res.status(400).json({success: false, data: { messsage: "Cover photo is empty." }});
+        
+        // respond to the user call
+        try {
+            const admin = await Admin.findById(req.params.id);
+            if(!admin) return res.status(400).json({ success: false, data: { message: "Admin not found"} })
+            
+            admin.backGroundPicture = req.files[0].filename 
+            await admin.save();
+            
+            return res.status(200).json({ success: true, data: { message: "Cover photo updated successfully.", admin: admin.backGroundPicture }});
+        } 
+        catch (error) {
+            return res.status(400).json({ success: false, data: { messsage: error.response }})
+        }
+    })
+}
+
 
 
 
