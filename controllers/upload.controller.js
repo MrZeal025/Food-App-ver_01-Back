@@ -52,7 +52,6 @@ var multipleUpload = multer({ storage: storage3, limits: { fileSize: 1024 * 1025
 exports.uploadProfile = async (req, res) => {
     
     profileUpload(req, res, async function (err) {
-        console.log(req.files)
         // check if there is a errow on the multer process
         if (err instanceof multer.MulterError) {
             throw err
