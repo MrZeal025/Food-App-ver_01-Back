@@ -33,7 +33,7 @@ const recipeSchema = Joi.object ()
         .messages(builder({ field: 'Ingredients'})),
     instruction: Joi.array()
         .required()
-        .messages(builder({ field: 'Instriction'})),
+        .messages(builder({ field: 'Instruction'})),
     nutrition: Joi.object()
         .keys({
             totalCalories: Joi.string().allow("").messages(builder({ field: "Total Calories"})),
