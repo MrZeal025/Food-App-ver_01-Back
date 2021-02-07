@@ -31,15 +31,14 @@ const recipeSchema = new Schema({
         price: String
     }],
     instruction: [{
-        step: String,
-        stepDuration: String
+        type: String
     }],
     nutrition: {
-        totalCalories: Number,
+        totalCalories: String,
         caloricBreakDown: {
-            percentProtein: Number,
-            percentFat: Number,
-            percentCarbs: Number
+            percentProtein: String,
+            percentFat: String,
+            percentCarbs: String
         }
     },
     ownerInfo: {
