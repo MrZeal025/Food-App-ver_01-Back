@@ -30,4 +30,11 @@ router.put("/admin/profile/:id", [jwtAuth], uploadController.uploadAdminProfile)
  */
 router.put("/admin/cover-photo/:id", [jwtAuth], uploadController.uploadAdminCoverPhoto);
 
+/**
+ * Route to register a user
+ * @param { facility object 19 plus fields} req
+ * @access { PRIVATE } requires x-auth-token
+ */
+router.post("/create/image/recipe", uploadController.createRecipeImage);
+
 module.exports = router;

@@ -23,6 +23,18 @@ const storage2 = multer.diskStorage({
     },
 });
 
+const storage3 = multer.diskStorage({
+    destination: (req, file, callback) => {
+        callback(null, process.env.MULTER_STORAGE_DESTINATION_RECIPE_PHOTO);
+    },
+    filename: (req, file, callback) => {
+        const extension = file.originalname.split('.').pop()
+        const processFileName = "xs.prcs." + file.originalname.split(' ').join('.').split('.').join('_') + "." + extension
+        callback(null, processFileName);
+    },
+});
+
+
 // filter image
 const fileFilter = (req, file, callback) => {
     if(file.mimetype === 'image/jpeg' || file.mimetype === "image/png") {
@@ -35,6 +47,7 @@ const fileFilter = (req, file, callback) => {
 
 var profileUpload = multer({ storage: storage1, limits: { fileSize: 1024 * 1024 * 20 }, fileFilter: fileFilter}).array('profilePicture');
 var coverPhotoUpload = multer({ storage: storage2, limits: { fileSize: 1024 * 1024 * 20}, fileFilter: fileFilter }).array('coverPhoto');
+var multipleUpload = multer({ storage: storage3, limits: { fileSize: 1024 * 1025 * 20 }, fileFilter: fileFilter}).array('recipeImages');
 
 exports.uploadProfile = async (req, res) => {
     
@@ -145,6 +158,31 @@ exports.uploadAdminCoverPhoto = async (req, res) => {
             await admin.save();
             
             return res.status(200).json({ success: true, data: { message: "Cover photo updated successfully.", admin: admin.backGroundPicture }});
+        } 
+        catch (error) {
+            return res.status(400).json({ success: false, data: { messsage: error.response }})
+        }
+    })
+}
+
+exports.createRecipeImage = async (req, res) => {
+    
+    multipleUpload(req, res, function (err) {
+
+        // check if there is a errow on the multer process
+        if (err instanceof multer.MulterError) {
+            throw err
+        } else if (err) {
+            return res.status(400).json({ success: false, data: { messsage: err }})
+        }
+        // check if there is a file
+        if(req.files.length === 0) return res.status(400).json({success: false, data: { messsage: "Facility image is required." }});
+        
+        // respond to the user call
+        try {
+            return res.status(200).json({ success: true, data: { 
+                message: req.files.length > 1 ? "Images uploded successfully" : "Image uploded successfully" 
+            }});
         } 
         catch (error) {
             return res.status(400).json({ success: false, data: { messsage: error.response }})

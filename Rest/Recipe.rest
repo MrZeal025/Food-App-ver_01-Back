@@ -57,30 +57,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmU5MWYyY
             "price": "10"
         }
     ],
-    "instruction": [
-        {
-            "step": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
-            "stepDuration": "30 mins"
-        },
-        {
-            "step": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
-            "stepDuration": "30 mins"
-        },
-        {
-            "step": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
-            "stepDuration": "30 mins"
-        },
-        {
-            "step": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
-            "stepDuration": "30 mins"
-        }
-    ],
+    "instruction": ["Test"],
     "nutrition": {
-        "totalCalories": 0,
+        "totalCalories": "200",
         "caloricBreakDown": {
-            "percentProtein": 0,
-            "percentFat": 0,
-            "percentCarbs": 0
+            "percentProtein": "200",
+            "percentFat": "200",
+            "percentCarbs": "200"
         }
     },
     "ownerInfo": {

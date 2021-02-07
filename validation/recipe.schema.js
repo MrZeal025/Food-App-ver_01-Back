@@ -36,12 +36,12 @@ const recipeSchema = Joi.object ()
         .messages(builder({ field: 'Instriction'})),
     nutrition: Joi.object()
         .keys({
-            totalCalories: Joi.string().messages(builder({ field: "Total Calories"})),
+            totalCalories: Joi.string().allow("").messages(builder({ field: "Total Calories"})),
             caloricBreakDown: Joi.object()
                 .keys({
-                    percentProtein: Joi.string().messages(builder({ field: "Protain Percentage"})),
-                    percentFat: Joi.string().messages(builder({ field: "Fat Percentage"})),
-                    percentCarbs: Joi.string().messages(builder({ field: "Carbohydrates Percentage"}))
+                    percentProtein: Joi.string().allow("").messages(builder({ field: "Protain Percentage"})),
+                    percentFat: Joi.string().allow("").messages(builder({ field: "Fat Percentage"})),
+                    percentCarbs: Joi.string().allow("").messages(builder({ field: "Carbohydrates Percentage"}))
                 })
         })
         .messages(builder({ field: "Nutrition"})),
