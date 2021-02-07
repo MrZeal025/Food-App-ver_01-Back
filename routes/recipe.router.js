@@ -17,6 +17,12 @@ router.post('/create', [jwtAuth, validate(recipeSchema)],  recipeController.crea
 router.get('/read-all', [jwtAuth], recipeController.readRecipe);
 
 /**
+ *  Route to get all recipe
+ *  @param { filters } 
+ */
+router.get('/:id', [jwtAuth], recipeController.readOneRecipe);
+
+/**
  *  Router to delete a recipe
  *  @param { _id }
  */

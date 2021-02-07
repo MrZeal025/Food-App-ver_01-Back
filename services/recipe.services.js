@@ -51,6 +51,16 @@ class RecipeService {
         }
     }
 
+    async getOneRecipe(id) {
+        const recipe = await Recipe.findById(id);
+        try {
+            return { success: true, data: { recipe: recipe}}
+        }
+        catch(error) {
+            return { success: false, data: error }
+        }
+    }
+
     async deleteRecipe(_id) {
         try {
             const deleteRecipe = await Recipe.findByIdAndDelete(_id);
