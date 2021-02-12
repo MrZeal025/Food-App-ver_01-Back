@@ -23,6 +23,12 @@ router.get('/read-all', [jwtAuth], recipeController.readRecipe);
 router.get('/:id', [jwtAuth], recipeController.readOneRecipe);
 
 /**
+ *  Route to get all recipe
+ *  @param { filters } 
+ */
+router.get('/my/:id', [jwtAuth], recipeController.readMy);
+
+/**
  *  Router to delete a recipe
  *  @param { _id }
  */

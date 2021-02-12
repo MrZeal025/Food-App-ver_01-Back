@@ -61,6 +61,16 @@ class RecipeService {
         }
     }
 
+    async getMyRecipe(id) {
+        const recipe = await Recipe.find({ "ownerInfo.id": id});
+        try {
+            return { success: true, data: { recipe: recipe}}
+        }
+        catch(error) {
+            return { success: false, data: error }
+        }
+    }
+
     async deleteRecipe(_id) {
         try {
             const deleteRecipe = await Recipe.findByIdAndDelete(_id);

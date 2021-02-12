@@ -50,6 +50,21 @@ exports.readOneRecipe = async (req, res) => {
     }
 }
 
+exports.readMy = async (req, res) => {
+    try {   
+        const read = await recipeService.getMyRecipe(req.params.id);
+        if(read.success){
+            return res.status(200).send(read);
+        }
+        else {
+            return res.status(400).send(read);
+        }
+    }
+    catch(err) {
+        throw err
+    }
+}
+
 exports.deleteRecipe = async (req, res) => {
     try {   
         const deleteRecipe = await recipeService.deleteRecipe(req.params.id);
