@@ -86,6 +86,7 @@ class AuthService {
                 email: linearCheck[0].email, 
                 type: linearCheck[0].type, 
                 fullName: linearCheck[0].fullName,
+                profilePicture: linearCheck[0].profilePicture,
                 date: linearCheck[0].date, 
             }
             const accessToken = `Bearer ${jwt.sign(account, process.env.ACCESS_TOKEN_SECRET)}`

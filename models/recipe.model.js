@@ -43,7 +43,8 @@ const recipeSchema = new Schema({
     },
     ownerInfo: {
         id: String,
-        name: String
+        name: String,
+        profilePicture: String
     }
 
 });

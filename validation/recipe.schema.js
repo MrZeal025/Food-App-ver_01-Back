@@ -48,7 +48,8 @@ const recipeSchema = Joi.object ()
     ownerInfo: Joi.object()
         .keys({
             id: Joi.string().required().messages(builder({ field: "User ID"})),
-            name: Joi.string().required().messages(builder({ field: "Owner name"}))
+            name: Joi.string().required().messages(builder({ field: "Owner name"})),
+            profilePicture: Joi.string().required().messages(builder({ field: "Profile Picture"}))
         })
 });
 
