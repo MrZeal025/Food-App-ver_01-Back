@@ -146,27 +146,20 @@ exports.uploadAdminCoverPhoto = async (req, res) => {
 
 exports.createRecipeImage = async (req, res) => {
     
-    multipleUpload(req, res, function (err) {
-
-        // check if there is a errow on the multer process
-        if (err instanceof multer.MulterError) {
-            throw err
-        } else if (err) {
-            return res.status(400).json({ success: false, data: { messsage: err }})
+    try {
+        const fileStr = req.body 
+        let uploadedResponse = [];
+        for(let i = 0; i < fileStr.length; i++) {
+            let res = await cloudinary.uploader.upload(fileStr[i], {
+                upload_preset: "dev_setups"
+            })
+            uploadedResponse.push(res)
         }
-        // check if there is a file
-        if(req.files.length === 0) return res.status(400).json({success: false, data: { messsage: "Facility image is required." }});
-        
-        // respond to the user call
-        try {
-            return res.status(200).json({ success: true, data: { 
-                message: req.files.length > 1 ? "Images uploded successfully" : "Image uploded successfully" 
-            }});
-        } 
-        catch (error) {
-            return res.status(400).json({ success: false, data: { messsage: error.response }})
-        }
-    })
+        return res.status(200).json({ success: true, data: { message: "Cover picture updated successfully.", imageResponse: uploadedResponse }});
+    } 
+    catch (error) {
+        return res.status(400).json({ success: false, data: { messsage: error.response }})
+    }
 }
 
 
