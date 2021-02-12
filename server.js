@@ -8,9 +8,10 @@ const path = require('path');
 const cors = require('cors');
 
 // enable to use json
-app.use(express.json());
 const server = http.createServer(app);
 app.use(cors());
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }))
 
 // import routes
 const authRoute = require('./routes/auth.router');

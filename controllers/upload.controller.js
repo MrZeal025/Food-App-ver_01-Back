@@ -1,4 +1,5 @@
 const multer = require("multer");
+const { cloudinary } = require('../config/cloudinary');
 const { User, Admin } = require('../models');
 
 const storage1 = multer.diskStorage({
@@ -50,31 +51,21 @@ var coverPhotoUpload = multer({ storage: storage2, limits: { fileSize: 1024 * 10
 var multipleUpload = multer({ storage: storage3, limits: { fileSize: 1024 * 1025 * 20 }, fileFilter: fileFilter}).array('recipeImages');
 
 exports.uploadProfile = async (req, res) => {
-    
-    profileUpload(req, res, async function (err) {
-        // check if there is a errow on the multer process
-        if (err instanceof multer.MulterError) {
-            throw err
-        } else if (err) {
-            return res.status(400).json({ success: false, data: { messsage: err }})
-        }
-        // check if there is a file
-        if(req.files.length === 0) return res.status(400).json({success: false, data: { messsage: "Profile picture is empty." }});
-        
-        // respond to the user call
-        try {
-            const user = await User.findById(req.params.id);
-            if(!user) return res.status(400).json({ success: false, data: { message: "User not found"} })
-            
-            user.profilePicture = req.files[0].filename 
-            await user.save();
-            
-            return res.status(200).json({ success: true, data: { message: "Profile picture updated successfully.", user: user.profilePicture }});
-        } 
-        catch (error) {
-            return res.status(400).json({ success: false, data: { messsage: error.response }})
-        }
-    })
+    try {
+        const fileStr = req.body.data 
+        const uploadedResponse = await cloudinary.uploader.upload(fileStr, {
+            upload_preset: "dev_setups"
+        })
+        const user = await User.findById(req.params.id);
+        if(!user) return res.status(400).json({ success: false, data: { message: "User not found"} })    
+        user.profilePicture = uploadedResponse.url
+        await user.save();
+        return res.status(200).json({ success: true, data: { message: "Profile picture updated successfully.", imageResponse: uploadedResponse }});
+    } 
+    catch (error) {
+        console.log(error.response)
+        return res.status(400).json({ success: false, data: { messsage: error.response }})
+    }
 }
 
 exports.uploadAdminProfile = async (req, res) => {
@@ -107,32 +98,21 @@ exports.uploadAdminProfile = async (req, res) => {
 }
 
 exports.uploadCoverPhoto = async (req, res) => {
-    
-    coverPhotoUpload(req, res, async function (err) {
-
-        // check if there is a errow on the multer process
-        if (err instanceof multer.MulterError) {
-            throw err
-        } else if (err) {
-            return res.status(400).json({ success: false, data: { messsage: err }})
-        }
-        // check if there is a file
-        if(req.files.length === 0) return res.status(400).json({success: false, data: { messsage: "Cover photo is empty." }});
-        
-        // respond to the user call
-        try {
-            const user = await User.findById(req.params.id);
-            if(!user) return res.status(400).json({ success: false, data: { message: "User not found"} })
-            
-            user.backGroundPicture = req.files[0].filename 
-            await user.save();
-            
-            return res.status(200).json({ success: true, data: { message: "Cover photo updated successfully.", user: user.backGroundPicture }});
-        } 
-        catch (error) {
-            return res.status(400).json({ success: false, data: { messsage: error.response }})
-        }
-    })
+    try {
+        const fileStr = req.body.data 
+        const uploadedResponse = await cloudinary.uploader.upload(fileStr, {
+            upload_preset: "dev_setups"
+        })
+        const user = await User.findById(req.params.id);
+        if(!user) return res.status(400).json({ success: false, data: { message: "User not found"} })    
+        user.backGroundPicture = uploadedResponse.url
+        await user.save();
+        return res.status(200).json({ success: true, data: { message: "Cover picture updated successfully.", imageResponse: uploadedResponse }});
+    } 
+    catch (error) {
+        console.log(error.response)
+        return res.status(400).json({ success: false, data: { messsage: error.response }})
+    }
 }
 
 exports.uploadAdminCoverPhoto = async (req, res) => {
