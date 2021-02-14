@@ -28,7 +28,10 @@ const recipeSchema = new Schema({
         name: String,
         amount: String,
         unit: String,
-        price: String
+        price: {
+            type: String,
+            default: ""
+        }
     }],
     instruction: [{
         type: String

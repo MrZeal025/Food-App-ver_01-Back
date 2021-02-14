@@ -37,7 +37,7 @@ exports.readRecipe = async (req, res) => {
 
 exports.readLimitedRecipe = async (req, res) => {
     try {
-        const readCertain = await recipeService.getLimitedRecipe(5);
+        const readCertain = await recipeService.getLimitedRecipe(8);
           if(readCertain.success){
             return res.status(200).send(readCertain);
         }
