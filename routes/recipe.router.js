@@ -17,10 +17,22 @@ router.post('/create', [jwtAuth, validate(recipeSchema)],  recipeController.crea
 router.get('/read-all', [jwtAuth], recipeController.readRecipe);
 
 /**
+ *  Route to get all recipe but in public
+ */
+
+router.get('/read-all/public', recipeController.readLimitedRecipe);
+
+/**
  *  Route to get all recipe
  *  @param { filters } 
  */
 router.get('/:id', [jwtAuth], recipeController.readOneRecipe);
+
+/**
+ *  Route to get all recipe
+ *  @param { filters } 
+ */
+router.get('/public/:id', recipeController.readOneRecipe);
 
 /**
  *  Route to get all recipe

@@ -51,6 +51,16 @@ class RecipeService {
         }
     }
 
+    async getLimitedRecipe(limit) {
+        const recipes = await Recipe.find().limit(limit);
+        try {
+            return { success: true, data: { recipes: recipes}}
+        }
+        catch(error) {
+            return { success: false, data: error }
+        }
+    }
+
     async getOneRecipe(id) {
         const recipe = await Recipe.findById(id);
         try {
