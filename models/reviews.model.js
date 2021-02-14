@@ -16,6 +16,10 @@ const reviewSchema = new Schema({
         _id: String,
         fullName: String,
         profilePicture: String
+    },
+    dateStamp: {
+        type: Date,
+        default: Date.now
     }
 });
 
