@@ -37,15 +37,27 @@ class ReviewService {
             return { success: true, data: comment}
         }
         catch(err) {
-            return { success: false, data: { error: err.errors}} 
+            return { success: false, data: {error: err.errors}} 
         }
     }
 
     async getReviews(id) {
         try {
             const reviews = await Review.find({ recipeId: id })
+            console.log(await Review.find())
             return { success: true, data: reviews}
         } 
+        catch (error) {
+            return { success: false, data: { error: error.errors}} 
+        }
+    }
+
+    async getAllReviews() {
+        try {
+            const reviews = await Review.find();
+            console.log(reviews)
+            return { success: true, data: reviews}
+        }
         catch (error) {
             return { success: false, data: { error: error.errors}} 
         }

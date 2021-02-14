@@ -3,12 +3,11 @@ const { reviewController } = require('../controllers');
 const { jwtAuth } = require('../middlewares');
 
 /** auth.router is subjected with and appended url /api/auth */
-/**
- * Route to log in a user
- * @param { email, password } req
- */
+
 router.post('/new/comment', [jwtAuth], reviewController.createReview);  
 
-router.get('/get/:id', reviewController.getAllreviews);
+router.get('/get/:id', reviewController.getReiewPerRecipe);
+
+router.get('/all-reviews', reviewController.getAllReviews);
 
 module.exports = router;
