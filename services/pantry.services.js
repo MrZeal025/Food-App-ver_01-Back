@@ -8,10 +8,6 @@ class IngredientService {
     }
 
     async addToPantry(body) {
-
-        const exist  = await Pantry.findOne({ recipeId: body.recipeId });
-        if(exist) return { success: false, data: {message: `Recipe ${EXIST_ERROR} is already in the pantry.` }}
-        
         const newPantry = new Pantry({
             recipeId: body.recipeId,
             ownerId: body.ownerId
