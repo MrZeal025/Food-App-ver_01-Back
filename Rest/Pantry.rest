@@ -1,0 +1,14 @@
+GET http://localhost:5000/api/pantry/read/602624b54bc3d323dcd4f4dd
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmU5MWYyYWNhZGJkNjQzNzA0YmIwODQiLCJlbWFpbCI6InJ5YW5ub2dyYWxlcy4wMjUuZ3RzaUBnbWFpbC5jb20iLCJ0eXBlIjoiVXNlcjpSZWd1bGFyIiwiZnVsbE5hbWUiOiJyeWFuIG5vZ3JhbGVzIiwiZGF0ZSI6IjIwMjAtMTItMjdUMjM6NTY6MjYuNzU1WiIsImlhdCI6MTYwOTgwNjQzM30.heQvIfGmHSmVtEfq8iacKD1e2GBvFyWj6MA7Dg1p45w
+
+###
+
+POST http://localhost:5000/api/pantry/add
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmU5MWYyYWNhZGJkNjQzNzA0YmIwODQiLCJlbWFpbCI6InJ5YW5ub2dyYWxlcy4wMjUuZ3RzaUBnbWFpbC5jb20iLCJ0eXBlIjoiVXNlcjpSZWd1bGFyIiwiZnVsbE5hbWUiOiJyeWFuIG5vZ3JhbGVzIiwiZGF0ZSI6IjIwMjAtMTItMjdUMjM6NTY6MjYuNzU1WiIsImlhdCI6MTYwOTgwNjQzM30.heQvIfGmHSmVtEfq8iacKD1e2GBvFyWj6MA7Dg1p45w
+
+{
+    "recipeId" : "6035fdf4cefb345d740a4bbf",
+    "ownerId" : "602624b54bc3d323dcd4f4dd"
+}

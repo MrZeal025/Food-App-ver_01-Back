@@ -20,6 +20,7 @@ const userRouter = require('./routes/user.router');
 const recipeRouter = require('./routes/recipe.router');
 const adminRouter = require('./routes/admin.router');
 const reviewRouter = require('./routes/review.router');
+const pantryRouter = require('./routes/pantry.router');
 
 // route middlewares
 app.use('/api/auth', authRoute);
@@ -28,6 +29,7 @@ app.use('/api/user', userRouter);
 app.use('/api/recipe', recipeRouter);
 app.use('/api/admin', adminRouter);
 app.use('/api/review', reviewRouter); 
+app.use('/api/pantry', pantryRouter);
 
 //  serve static assets if in productions
 if(process.env.NODE_ENV === "production") {

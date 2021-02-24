@@ -4,6 +4,7 @@ const RecipeService = require('./recipe.services');
 const IngredientService = require('./ingredient.services');
 const AdminService = require('./admin.services');
 const ReviewService = require('./review.services');
+const PantryService = require('./pantry.services');
 
 module.exports = {
   AuthService,
@@ -11,5 +12,6 @@ module.exports = {
   RecipeService,
   IngredientService,
   AdminService,
-  ReviewService
+  ReviewService,
+  PantryService
 };
