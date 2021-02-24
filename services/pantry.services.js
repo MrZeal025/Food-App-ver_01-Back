@@ -33,8 +33,30 @@ class IngredientService {
             const getRecipes = await Recipe.findById(getItem[i].recipeId)
             recipes.push(getRecipes)
         }
+        const data = recipes.filter(recipe => recipe !== null)
         try {
-            return { success: true, data: recipes }
+            return { success: true, data: data }
+        }
+        catch (err) {
+            return { success: false, data: [] }
+        }
+    }
+
+    async removeFromPantry(id) {
+        try {
+            await Pantry.findOneAndDelete({ recipeId: id })
+            return { success: true }
+        }
+        catch (err) {
+            return { success: false, data: [] }
+        }
+    }
+
+    async readPantryMinimal(id){
+        const getItem = await Pantry.find({ ownerId: id });
+        const data = getItem.filter(recipe => recipe !== null)
+        try {
+            return { success: true, data: data }
         }
         catch (err) {
             return { success: false, data: [] }

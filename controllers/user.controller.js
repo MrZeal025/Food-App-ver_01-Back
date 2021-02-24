@@ -20,3 +20,19 @@ exports.readOneProfile = async (req, res) => {
         throw err
     }
 };
+
+
+exports.getAll = async (req, res) => {
+
+    try {
+        const getProfile = await userService.readAll();
+        if(getProfile.success){
+            return res.status(200).send(getProfile);
+        }else {
+            return res.status(400).send(getProfile);
+        }
+    } 
+    catch (err) {
+        throw err
+    }
+}

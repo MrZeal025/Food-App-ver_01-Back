@@ -35,9 +35,24 @@ exports.readPantry = async (req, res) => {
     }
 }
 
+exports.readPantryMinimalData = async (req, res) => {
+    try {   
+        const readAll = await pantryService.readPantryMinimal(req.params.id);
+        if(readAll.success){
+            return res.status(200).send(readAll);
+        }
+        else {
+            return res.status(400).send(readAll);
+        }
+    }
+    catch(err) {
+        throw err
+    }
+}
+
 exports.removeFromPantry = async (req, res) => {
     try {   
-        const deleteRecipe = await pantryService.deleteRecipe(req.params.id);
+        const deleteRecipe = await pantryService.removeFromPantry(req.params.id);
         if(deleteRecipe.success){
             return res.status(200).send(deleteRecipe);
         }

@@ -9,4 +9,6 @@ const { jwtAuth } = require('../middlewares');
  */
 router.get('/profile/read/:id', [jwtAuth], userController.readOneProfile);  
 
+router.get('/all', [jwtAuth], userController.getAll);
+
 module.exports = router;

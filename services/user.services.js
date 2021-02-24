@@ -33,6 +33,21 @@ class UserService {
             return { success: false, data: { error: err.errors}} 
         }
     }
+
+
+    async readAll() {
+
+        try {
+            // find duplicate
+            const user = await User.find();
+            if(!user) return { success: false, data: {message: `User ${NOT_FOUND}` }}
+
+            return { success: true, data: user}
+        }
+        catch(err) {
+            return { success: false, data: { error: err.errors}} 
+        }
+    }
 }
 
 module.exports = UserService;
