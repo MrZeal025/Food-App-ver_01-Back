@@ -45,8 +45,8 @@ class AuthService {
             await user.save();
             const registerToken = `Bearer ${jwt.sign({ _id : user._id, verified: false }, process.env.ACCESS_TOKEN_SECRET)}`;
             // mailing purposes
-            const html = `Hello,<br/>Please verify by clicking this link: <a href="${ process.env.NODE_ENV === "production" ? process.env.HEROKU_URI  : process.env.verificationURL}/api/auth/verify/${user._id}">Verify Here!</a>`;
-            await mailer.sendEmail("admin@yeah.com", email, "Verification Email", html);
+            // const html = `Hello,<br/>Please verify by clicking this link: <a href="${ process.env.NODE_ENV === "production" ? process.env.HEROKU_URI  : process.env.verificationURL}/api/auth/verify/${user._id}">Verify Here!</a>`;
+            // await mailer.sendEmail("admin@yeah.com", email, "Verification Email", html);
 
             return { success: true, data: { message: REGISTER_SUCCESS }, registerToken: registerToken }
         }
